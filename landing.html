@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Welcome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/general.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/structure/landing_structure.css" />
     <script src="main.js"></script>
 </head>
 
@@ -14,17 +15,21 @@
     <main>
         <div class="container">
             <div class="element1">
-                <form class="register">
-                    <label>Nume</label>
-                    <input type="text">
-                    <label>Email</label>
-                    <input type="email">
-                    <label>Password</label>
-                    <input type="password">
+                <form class="formclass">
+                    <div class="wrapper">
+                        <label>Nume</label>
+                        <input type="text">
+                    </div>
+                    <div class="wrapper">
+                        <label>Email</label>
+                        <input type="email">
+                    </div>
+                    <div class="wrapper">
+                        <label>Password</label>
+                        <input type="password">
+                    </div>
                     <input type="submit" value="Continue">
                 </form>
-            </div>
-            <div class="element2">
                 <a href="login.html">Login</a>
             </div>
         </div>

@@ -1,0 +1,29 @@
+.container{
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    background-color: aqua;
+}
+
+.element1{
+
+    grid-column: 2/3; 
+    grid-row: 2/3;
+    background-color: yellow;
+}
+
+@media only screen and (max-width: 530px) {
+    body {
+        background-color: lightblue;
+    }
+    .container{
+        width: 100%;
+        
+    }
+    .element1{
+
+        grid-column: 1/5; 
+        grid-row: 2/3;
+    
+    }
+}
