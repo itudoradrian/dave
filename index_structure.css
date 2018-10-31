@@ -1,0 +1,62 @@
+@import url("/css/general.css");
+
+body{
+    background-color: white;
+    margin: 30px 50px;
+    line-height: 1.4;
+}
+
+img {
+    max-width: 100%;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 20px;
+}
+
+
+
+/* Add form button */
+
+.add {
+    max-width: 5rem;
+    margin: auto;
+    margin-top: 3rem;
+
+}
+
+.add:hover {
+    background-color: var(--level2);
+    border-radius: 60%;
+    
+}
+
+/* List of forms */
+
+.forms ul {
+    display: grid;
+    grid-gap: 10px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1fr, 4);
+}
+
+.forms a {
+    background-color: var(--level4);
+    display: block;
+    text-decoration: none;
+    padding: 1.5rem;
+    text-align: center;
+    color: black;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    border-radius: 20px;
+}
+
+.forms a:hover {
+    background:var(--level2);
+    color: var(--level4); 
+}
+

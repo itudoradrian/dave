@@ -1,0 +1,74 @@
+@import url("/css/general.css");
+@media only screen and (min-width: 600px;) {
+    html{
+        box-sizing: border-box;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    body{
+        background-color: aliceblue;
+        margin: 30px 50px;
+        line-height: 1.4;
+    }
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+
+    /* Graphics and statistics */
+
+    .statistics {
+        max-width: 40em;
+        background-color: blue;
+        margin: auto;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    html{
+        box-sizing: border-box;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    body{
+        background-color: aliceblue;
+        margin: 30px 50px;
+        line-height: 1.4;
+    }
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+
+    /* Graphics and statistics */
+
+    .statistics {
+        max-width: 40em;
+        background-color: blue;
+        margin: auto;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+

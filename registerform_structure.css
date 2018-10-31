@@ -1,0 +1,97 @@
+@media only screen and (max-width: 600px) {
+
+    html{
+        box-sizing: border-box;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    body{
+        background-color: aliceblue;
+        margin: 30px 50px;
+        line-height: 1.4;
+    }
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+    /* Navigation */
+    
+    .main-nav ul {
+        display: grid;
+        grid-gap: 20px;
+        padding: 0;
+        list-style: none;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .main-nav a {
+        background-color: antiquewhite;
+        display: block;
+        text-decoration: none;
+        padding: 0.5rem;
+        text-align: center;
+        color: black;
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+    
+    .main-nav a:hover {
+        background: black;
+        color: antiquewhite; 
+    }
+
+    /* Register form */
+    .register form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1fr, 4);
+        grid-gap: 10px; 
+    }
+    
+    .register form label {
+        display: inline-block;
+        background: white;
+        margin: auto;
+    }
+    
+    .register form p {
+        margin: 0.5rem;
+        background: #c98246;
+        display: flex;
+    }
+    
+
+
+    /* Register button */
+
+    input, button {
+        flex: 1; 
+        margin: 1rem;   
+    }
+    
+    button {
+        min-height: 2.5rem;
+        max-height: 3rem;
+    }
+    
+    button, input[type=submit] {
+        background-color:  rgb(16, 52, 70);
+        border-radius: 5px;
+        border-radius: 5px;
+        border: 0.1em solid lightblue;
+        padding: 1em;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: white;
+        color: rgb(8, 88, 128);
+    }
+   
