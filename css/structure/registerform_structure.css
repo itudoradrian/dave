@@ -1,43 +1,147 @@
-.container{
+@import url("/css/general.css"); 
 
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 0.5fr 2fr 2fr 0.5fr;
-    background-color: aqua;
-    grid-gap: 0.12cm;
-}
-
-.element1{
-
-    grid-column: 2/3; 
-    grid-row: 2/3;
-    background-color: yellow;
-}
-.element2{
-
-    grid-column: 2/3; 
-    grid-row: 3/4;
-    background-color: yellow;
-}
-
-
-@media only screen and (max-width: 530px) {
-    body {
-        background-color: lightblue;
+ @media (min-width: 800px) {
+    
+    body{
+        margin: 30px 50px;
+        line-height: 1.4;
     }
-    .container{
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+
+    /* Register form */
+     .register form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(1fr, 4);
+        grid-gap: 10px; 
+        box-shadow: 0 0 20px 0 var(--level4);
+        border-radius: 10px;
+        border-radius: 10px;
+        border: 0.1em solid var(--level2);
+
+    }
+    
+    .register form label {
+        display: inline-block;
+        margin: auto;
+
+    }
+    
+    .register form p {
+        margin: 0.5rem;
         width: 100%;
+        display: flex;
+
+    }
+    
+    .button {
+        float: right;
+
+    }
+
+}  
+
+@media (max-width: 800px) {
+    
+    body{
+        margin: 30px 50px;
+        line-height: 1.4;
+    }
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+
+    /* Register form */
+    .register form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1fr, 4);
+        grid-gap: 10px; 
+        box-shadow: 0 0 20px 0 var(--level4);
+        border-radius: 10px;
+        border-radius: 10px;
+        border: 0.1em solid var(--level2);
+        padding: 1rem;
+      
+    } 
+     
+    .register form label {
+        display: inline-block;
+        margin: auto;
+    }
+    
+    .register form p {
+        margin: 0.5rem;
+        width: 100%;
+        display: flex;
         
     }
-    .element1{
 
-        grid-column: 1/4; 
-        grid-row: 2/3;
-    
-    }
-    .element2{
 
-        grid-column: 1/4; 
-        grid-row: 3/4;
     
-    }
 }
+
+ @media (max-width: 500px) {
+    
+    body{
+        margin: 30px 50px;
+        line-height: 1.4;
+    }
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 10px;
+    }
+    
+
+    /* Register form */
+    .register form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(1fr, 4);
+        grid-gap: 10px; 
+        box-shadow: 0 0 20px 0 var(--level4);
+        border-radius: 10px;
+        border-radius: 10px;
+        border: 0.1em solid var(--level2);
+    }
+    
+    .register form label {
+        display: inline-block;
+        margin: auto;
+    }
+    
+    .register form p {
+        margin: 0.5rem;
+        display: flex;
+    }
+    
+ 
+
+   

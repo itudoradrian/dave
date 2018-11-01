@@ -1,59 +1,126 @@
-.container{
+@import url("/css/general.css");
 
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 2fr 2fr 0.5fr;
-    background-color: aqua;
-    grid-gap: 0.12cm;
-}
-
-.element1{
-
-    grid-column: 2/4; 
-    grid-row: 2/3;
-    background-color: yellow;
-}
-.element2{
-
-    grid-column: 2/3; 
-    grid-row: 3/4;
-    background-color: yellow;
-    float:left;
-}
-.element3{
-
-    grid-column: 3/4; 
-    grid-row: 3/4;
-    background-color: yellow;
-    float: right;
-}
-
-
-@media only screen and (max-width: 530px) {
-    body {
-        background-color: lightblue;
+@media (min-width: 500px) {
+    body{
+        background-color: white;
+        margin: 30px 50px;
+        line-height: 1.4;
     }
-    .container{
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+
+    /* Table */
+
+    table {
+        border-collapse: collapse;
         width: 100%;
-        grid-template-columns: 1fr 2fr 1fr;
-        grid-template-rows: 0.5fr 2fr 2fr 2fr 0.5fr;
     }
-    .element1{
-
-        grid-column: 1/4; 
-        grid-row: 2/3;
     
+    th {
+        max-height: 1rem;
+        text-align: left;
+        background: white;
+        background: var(--level5);
     }
-    .element2{
 
-        grid-column: 1/4; 
-        grid-row: 3/4;
-    
+    th, td {
+        padding: 0.5rem;
+        border-bottom: 1px solid #ddd;
     }
-    .element3{
+    table, th, td {
+        border: 1px solid black;
+    }
+   
+    tr:hover {
+        background-color: var(--level3);
+    }
+    
+.buttons ul {
+    display: grid;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
 
-        grid-column: 1/4; 
-        grid-row: 4/5;
-    
-    }
+button {
+    text-decoration: none;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    background-color:  var(--level1);
+    display: block;
+    border-radius: 5px;
+    border-radius: 5px;
+    border: 0.1em solid lightblue;
+    width:  100%;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: var(--level4);
+    color: rgb(8, 88, 128);
 
 }
+
+}
+@media only screen and (max-width: 500px) {
+    
+    body{
+        background-color: white;
+        margin: 30px 50px;
+        line-height: 1.4;
+    }
+    
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-gap: 20px;
+    }
+    
+
+    /* Table */
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    th {
+        max-height: 1rem;
+        text-align: left;
+        background: var(--level5);
+    }
+
+    th, td {
+        padding: 0.5rem;
+        border-bottom: 1px solid #ddd;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+   
+    tr:hover {
+        color: rgb(8, 88, 128);
+
+    }
+    
+    
+
+
+

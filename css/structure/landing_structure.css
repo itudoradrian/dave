@@ -1,30 +1,86 @@
+@import url("/css/general.css");
+
+body {
+    background: white;
+    line-height: 1.6;
+    padding: 1em;
+}
+
 .container{
-
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-    background-color: aqua;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
 }
 
-.element1{
+.project{
+    text-align: center;
+}
 
-    grid-column: 2/3; 
-    grid-row: 2/3;
-    background-color: yellow;
+.wrapper{
+    border-radius: 10px;
+    border-radius: 10px;
+    border: 0.1em solid var(--level2);
+    box-shadow: 0 0 20px 0 var(--level4);
 }
 
 
-@media only screen and (max-width: 530px) {
-    body {
-        background-color: lightblue;
-    }
-    .container{
-        width: 100%;
-        
-    }
-    .element1{
 
-        grid-column: 1/5; 
-        grid-row: 2/3;
-    
-    }
+.project-info {
+    background: var(--level4);
+    padding: 0.7rem;
+    border-top-left-radius:10px;
+    border-top-right-radius: 10px; 
+}
+
+.project-info h3 {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+
+
+
+/* The Login Form */
+.login form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(1fr, 4);
+    grid-gap: 10px; 
+}
+
+.login form label {
+    display: inline-block;
+    margin: auto;
+}
+
+.login form p {
+    margin: 0.5rem;
+    display: flex;
+}
+
+input, button {
+    flex: 1; 
+    margin: 1rem;   
+}
+
+button {
+    min-height: 2.5rem;
+    max-height: 3rem;
+}
+
+button, input[type=submit] {
+    background-color:  var(--level1);
+    border-radius: 5px;
+    border-radius: 5px;
+    border: 0.1em solid var(--level4);
+    text-align: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+button:hover {
+    background-color: var(--level4);
+    color: var(--level1);
 }

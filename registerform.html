@@ -2,42 +2,52 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/general.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/structure/registerform_structure.css" />
-    <script src="main.js"></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="css/general.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="css/structure/registerform_structure.css" />
+  <script src="main.js"></script>
 </head>
 
 <body>
-    <nav>
-        <div class="navbar">
-            <ul>
-                <li><a href="statistics.html">Account Statistics</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </div>
+
+  <div class="wrapper">
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="./statistics.html">Statistics</a></li>
+        <li><a href="#">LogOut</a></li>
+      </ul>
     </nav>
-    <main>
-        <div class="container">
-            <div class="element1">
-                <form class="formclass">
-                    <div class="wrapper">
-                        <label>Nume form</label>
-                        <input type="text">
-                    </div>
-                    <input type="submit" value="Register form">
-                </form>
-            </div>
-            <div class="element2">
-                <p>
-                    ***** JAVASCRIPT CODE AFTER REGISTER*****
-                </p>
-            </div>
-        </div>
-    </main>
+
+    <!-- Register form -->
+    <div class="register">
+      <form>
+        <div class="fields">
+        <p>
+          <label><b>Nume formular:</b></label>
+          <input type="text" required>
+        </p>
+      </div>
+        <p class="button">
+          <button type="submit" value="Register form">Register Form</button>
+        </p>
+      </form>
+
+    </div>
+
+
+    <!-- Section with the JavaScript code -->
+    <div class="code">
+      <p>
+        ***** JAVASCRIPT CODE AFTER REGISTER*****
+      </p>
+    </div>
+  </div>
+
 </body>
 
 </html>
