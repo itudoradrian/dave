@@ -13,7 +13,7 @@
 
 <body>
   <div class="wrapper">
-    
+
     <!-- Navigation -->
     <nav class="main-nav">
       <ul>
@@ -24,7 +24,7 @@
 
     <!-- Button to add form -->
     <div class="add">
-      <a href="#">
+      <a href="registerform.html">
         <img src="./img/add.svg" alt="add form">
       </a>
     </div>
@@ -32,20 +32,33 @@
     <!-- Forms -->
     <div class="forms">
       <ul>
-          <li><a href="#">Form1</a></li>
-          <li><a href="#">Form2</a></li>
-          <li><a href="#">Form3</a></li>
-          <li><a href="#">Form4</a></li>
-          <li><a href="#">Form5</a></li>
-          <li><a href="#">Form6</a></li>
+        <li><a href="formdisplay.html">Form1</a></li>
+        <li><a href="#">Form2</a></li>
+        <li><a href="#">Form3</a></li>
+        <li><a href="#">Form4</a></li>
+        <li><a href="#">Form5</a></li>
+        <li><a href="#">Form6</a></li>
       </ul>
     </div>
 
 
   </div>
-  <!-- Wrapper ends -->
 
-  
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyApyPVMUxBRyZPWwgOmxxBLy8wh8cLcrfA",
+      authDomain: "dave-28da5.firebaseapp.com",
+      databaseURL: "https://dave-28da5.firebaseio.com",
+      projectId: "dave-28da5",
+      storageBucket: "dave-28da5.appspot.com",
+      messagingSenderId: "655534704604"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+
 </body>
 
 </html>

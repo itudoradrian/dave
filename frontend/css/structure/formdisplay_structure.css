@@ -58,15 +58,13 @@ button {
     padding: 0.5rem;
     text-align: center;
     font-size: 1.2rem;
+    color: black;
     background-color:  var(--level1);
     display: block;
-    border-radius: 5px;
-    border-radius: 5px;
     border: 0.1em solid lightblue;
     width:  100%;
     cursor: pointer;
 }
-
 .buttons button:hover {
     background-color: var(--level4);
     color: rgb(8, 88, 128);
@@ -120,7 +118,7 @@ button {
 
     }
     
-    
+}
 
 
 

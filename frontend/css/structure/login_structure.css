@@ -48,21 +48,19 @@ body {
 
 
 /* The Login Form */
-.login form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, 4);
-    grid-gap: 10px; 
-}
-
-.login form label {
+.login label {
     display: inline-block;
-    padding: 0.2rem;
-    margin: auto;
+    margin-left: 25px;
 }
+.form-group{
 
-.login form p {
-    margin: 0.5rem;
-    display: flex;
+    padding-top: 15px;
+}
+.form-group input{
+    float: right;
+    margin-right: 20px;
+}
+.button{
+    margin: 20px 0 10px 30%;
 }
 

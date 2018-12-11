@@ -22,84 +22,24 @@
     /* Register form */
      .register form {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(1fr, 4);
-        grid-gap: 10px; 
-        box-shadow: 0 0 20px 0 var(--level4);
-        border-radius: 10px;
-        border-radius: 10px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        box-shadow: 0 0 20px 0 var(--level4);       
         border: 0.1em solid var(--level2);
-
     }
-    
-    .register form label {
-        display: inline-block;
+    .fields{
         margin: auto;
-
+        grid-row: 1/2;
     }
     
-    .register form p {
-        margin: 0.5rem;
-        width: 100%;
-        display: flex;
-
+    .button{
+        
+        grid-row: 2/3;
     }
     
-    .button {
-        float: right;
-
-    }
+    
 
 }  
-
-@media (max-width: 800px) {
-    
-    body{
-        margin: 30px 50px;
-        line-height: 1.4;
-    }
-    
-    img {
-        display: block;
-        max-width: 100%;
-        margin: auto;
-    }
-    
-    .wrapper {
-        display: grid;
-        grid-gap: 20px;
-    }
-    
-
-    /* Register form */
-    .register form {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(1fr, 4);
-        grid-gap: 10px; 
-        box-shadow: 0 0 20px 0 var(--level4);
-        border-radius: 10px;
-        border-radius: 10px;
-        border: 0.1em solid var(--level2);
-        padding: 1rem;
-      
-    } 
-     
-    .register form label {
-        display: inline-block;
-        margin: auto;
-    }
-    
-    .register form p {
-        margin: 0.5rem;
-        width: 100%;
-        display: flex;
-        
-    }
-
-
-    
-}
 
  @media (max-width: 500px) {
     
@@ -124,24 +64,17 @@
     .register form {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(1fr, 4);
-        grid-gap: 10px; 
-        box-shadow: 0 0 20px 0 var(--level4);
-        border-radius: 10px;
-        border-radius: 10px;
+        grid-template-rows: 1fr 1fr;
+        box-shadow: 0 0 20px 0 var(--level4);       
         border: 0.1em solid var(--level2);
     }
-    
-    .register form label {
-        display: inline-block;
+    .fields{
         margin: auto;
+        grid-row: 1/2;
     }
     
-    .register form p {
-        margin: 0.5rem;
-        display: flex;
+    .button{
+        
+        grid-row: 2/3;
     }
-    
- 
-
-   
+ }

@@ -20,27 +20,31 @@ img {
 /* Add form button */
 
 .add {
-    max-width: 5rem;
+    max-width: 4rem;
     margin: auto;
-    margin-top: 3rem;
+    margin-top: 5rem;
 
 }
 
 .add:hover {
     background-color: var(--level2);
-    border-radius: 80%;
+    border-radius: 50%;
     
 }
 
 /* List of forms */
 
 .forms ul {
-    display: grid;
-    grid-gap: 10px;
+    
     padding: 0;
     list-style: none;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, 4);
+
+}
+.forms li{
+
+    padding: 5px 0px 5px 25%;
+    width: 50%;
+      
 }
 
 .forms a {
@@ -52,7 +56,7 @@ img {
     color: black;
     text-transform: uppercase;
     font-size: 1.7rem;
-    border-radius: 20px;
+    
 }
 
 .forms a:hover {

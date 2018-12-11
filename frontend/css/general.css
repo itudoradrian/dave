@@ -24,7 +24,7 @@ html{
 
 .main-nav ul {
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 5px;
     padding: 0;
     list-style: none;
     grid-template-columns: 1fr 1fr;
@@ -39,8 +39,8 @@ html{
     color: black;
     text-transform: uppercase;
     font-size: 1.2rem;
-    border-radius: 10px;
-    border-radius: 10px;
+    
+    
 }
 
 .main-nav a:hover {
@@ -48,10 +48,13 @@ html{
     color: white; 
 }
 
-input, button {
+button {
     flex: 1; 
-    margin: auto;; 
+    margin: auto;
     
+}
+input{
+    margin:auto;
 }
 
 button {
@@ -61,15 +64,13 @@ button {
 
 button, input[type=submit] {
     background-color:  var(--level1);
-    border-radius: 5px;
-    border-radius: 5px;
     border: 0.1em solid var(--level4);
     text-align: center;
     cursor: pointer;
     font-size: 1.5rem;
-    width: 90%;
+    width: 40%;
 }
-button:hover {
+button,input:hover {
     background-color: var(--level4);
     color: var(--level1);
 }
@@ -122,8 +123,6 @@ button:hover {
     
     button, input[type=submit] {
         background-color:  var(--level1);
-        border-radius: 5px;
-        border-radius: 5px;
         border: 0.1em solid var(--level4);
         text-align: center;
         cursor: pointer;
