@@ -6,14 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/css/general.css" />
+    <!--
+        <link rel="stylesheet" type="text/css" media="screen" href="/css/general.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/index_structure.css" />
+
+    -->
+
 
 </head>
 
 <body>
-    <div class="content">
+    <div id="displayView">
     </div>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyApyPVMUxBRyZPWwgOmxxBLy8wh8cLcrfA",
+            authDomain: "dave-28da5.firebaseapp.com",
+            databaseURL: "https://dave-28da5.firebaseio.com",
+            projectId: "dave-28da5",
+            storageBucket: "dave-28da5.appspot.com",
+            messagingSenderId: "655534704604"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="/javascript/main.js"></script>
 </body>
 
