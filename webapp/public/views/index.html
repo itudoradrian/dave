@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dave Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/general.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/index_structure.css" />
+  <script src="/javascript/main.js"></script>
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/views/statistics.html">Statistics</a></li>
+        <li><a href="#">LogOut</a></li>
+      </ul>
+    </nav>
+
+    <!-- Button to add form -->
+    <div class="add">
+      <a href="/views/registerform.html">
+        <img src="/images/add.svg" alt="add form">
+      </a>
+    </div>
+
+    <!-- Forms -->
+    <div class="forms">
+      <ul>
+        <li><a href="/views/formdisplay.html">Form1</a></li>
+        <li><a href="#">Form2</a></li>
+        <li><a href="#">Form3</a></li>
+        <li><a href="#">Form4</a></li>
+        <li><a href="#">Form5</a></li>
+        <li><a href="#">Form6</a></li>
+      </ul>
+    </div>
+
+
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyApyPVMUxBRyZPWwgOmxxBLy8wh8cLcrfA",
+      authDomain: "dave-28da5.firebaseapp.com",
+      databaseURL: "https://dave-28da5.firebaseio.com",
+      projectId: "dave-28da5",
+      storageBucket: "dave-28da5.appspot.com",
+      messagingSenderId: "655534704604"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+
+</body>
+
+</html>
