@@ -1,11 +1,3 @@
-const htmlDocumentsFetched = {
-    'index' : false,
-    'formdisplay' : false,
-    'landing' : false,
-    'login' : false,
-    'registerform' : false,
-    'statistics' : false,
-};
 
 function fetchJsScript(resourceName){
 
@@ -21,9 +13,10 @@ function fetchJsScript(resourceName){
         document.querySelector('body').appendChild(indexScript);
     });
 }
-function fetchHTMLPage(resourceName, targetDiv) {
+function fetchHTMLPage(resourceName) {
 
     htmlResource = `/views/${resourceName}.html`;
+
     fetch(htmlResource).then(function (res) {
 
         if (res.status === 200) {
@@ -34,33 +27,33 @@ function fetchHTMLPage(resourceName, targetDiv) {
             res.status);
         return;
 
-    }).then(function (htmlText) {
+    }).then((htmlText) => {
 
         //Get document Parser to create the DOM for the fetched html page
         const parser = new DOMParser();
         const fetchedHTMLPage = parser.parseFromString(htmlText, "text/html");
-
-        //Append the links from the fetched html page because DOM Parser doesn't do that
-        const linksToFetch = fetchedHTMLPage.querySelectorAll('link');
-        linksToFetch.forEach((link) => {
-
-            document.head.appendChild(link);
-        });
-
         //Get the inner div from the fetched page and its appended to the targetDiv
-        const indexView = fetchedHTMLPage.querySelector('#view');
-        targetDiv.innerHTML = indexView.innerHTML;
-
-        //Fetch the javaScript file
-        fetchJsScript(resourceName);
+        const view = fetchedHTMLPage.querySelector('#view');
+        view.setAttribute('class','passive');
+        view.setAttribute('id',`${resourceName}View`);
+        document.querySelector('#displayView').appendChild(view);
+        console.log(view);
+        
     })
 }
 
 function init(){
 
     
-    fetchHTMLPage('index',targetDiv);
-    htmlDocumentsFetched['index'] = true;
+    fetchHTMLPage('index');
+    fetchHTMLPage('formdisplay');
+    fetchHTMLPage('landing');
+    fetchHTMLPage('login');
+    fetchHTMLPage('registerform');
+    fetchHTMLPage('statistics');
+    let currentView = document.getElementById('indexView');
+    console.log(currentView);
+    
 }
 const targetDiv = document.querySelector('#displayView');
 init();
