@@ -1,6 +1,6 @@
 .passive{
 
-    visibility: hidden;
+    display: none;
 }
 :root {
     /* aici voi pune culorile din paleta de culori */
@@ -20,8 +20,11 @@ html{
 }
 body{
 
-    margin: 0;
+    margin: 30px 50px;
     padding: 0;
+    background-color: aliceblue;
+    line-height: 1.4;
+
 }
 
 
@@ -142,4 +145,3 @@ button,input:hover {
     }
  
 }
-@import url("/css/general.css");

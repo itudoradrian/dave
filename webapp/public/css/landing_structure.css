@@ -1,12 +1,5 @@
-@import url("/css/general.css");
 
-body {
-    background: white;
-    line-height: 1.6;
-    padding: 1em;
-}
-
-.container{
+.landingContainer{
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +10,7 @@ body {
     text-align: center;
 }
 
-.wrapper{
+.landingWrapper{
     border-radius: 10px;
     border-radius: 10px;
     border: 0.1em solid var(--level2);

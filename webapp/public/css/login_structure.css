@@ -1,13 +1,4 @@
-@import url("/css/general.css");
-
-body {
-    background: white;
-    color: black;
-    line-height: 1.6;
-    padding: 1em;
-}
-
-.container{
+.loginContainer{
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -18,7 +9,7 @@ body {
     text-align: center;
 }
 
-.wrapper{
+.loginWrapper{
     box-shadow: 0 0 20px 0 var(--level4);
     border-radius: 10px;
     border-radius: 10px;

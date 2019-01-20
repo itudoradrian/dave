@@ -1,16 +1,10 @@
-@import url("/css/general.css");
 
-body{
-    background-color: white;
-    margin: 30px 50px;
-    line-height: 1.4;
-}
 
-img {
+#indexImg {
     max-width: 100%;
 }
 
-.wrapper {
+.indexWrapper {
     display: grid;
     grid-gap: 20px;
 }
@@ -19,14 +13,14 @@ img {
 
 /* Add form button */
 
-.add {
+.indexAdd {
     max-width: 4rem;
     margin: auto;
     margin-top: 5rem;
 
 }
 
-.add:hover {
+.indexAdd:hover {
     background-color: var(--level2);
     border-radius: 50%;
     
@@ -34,20 +28,20 @@ img {
 
 /* List of forms */
 
-.forms ul {
+.indexForms ul {
     
     padding: 0;
     list-style: none;
 
 }
-.forms li{
+.indexForms li{
 
     padding: 5px 0px 5px 25%;
     width: 50%;
       
 }
 
-.forms a {
+.indexForms a {
     background-color: var(--level4);
     display: block;
     text-decoration: none;
@@ -59,7 +53,7 @@ img {
     
 }
 
-.forms a:hover {
+.indexForms a:hover {
     background:var(--level2);
     color: white; 
 }

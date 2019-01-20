@@ -1,11 +1,8 @@
-@import url("/css/general.css"); 
+
 
  @media (min-width: 800px) {
     
-    body{
-        margin: 30px 50px;
-        line-height: 1.4;
-    }
+    
     
     img {
         display: block;
@@ -13,7 +10,7 @@
         margin: auto;
     }
     
-    .wrapper {
+    .registerWrapper {
         display: grid;
         grid-gap: 20px;
     }
@@ -43,18 +40,13 @@
 
  @media (max-width: 500px) {
     
-    body{
-        margin: 30px 50px;
-        line-height: 1.4;
-    }
-    
     img {
         display: block;
         max-width: 100%;
         margin: auto;
     }
     
-    .wrapper {
+    .registerWrapper {
         display: grid;
         grid-gap: 10px;
     }
