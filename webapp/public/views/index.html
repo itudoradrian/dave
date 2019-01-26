@@ -1,45 +1,28 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dave Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
 <body>
-  <div id="view" >
+  <div id="view" class="passive">
     <div class="indexWrapper">
       <!-- Navigation -->
       <nav class="main-nav">
         <ul>
-          <li><a href="/views/statistics.html">Statistics</a></li>
+          <li><a route="/statistics">Statistics</a></li>
           <li><a href="#">LogOut</a></li>
         </ul>
       </nav>
 
       <!-- Button to add form -->
       <div class="indexAdd">
-        <a href="/views/registerform.html" id="newForm">
-          <img id="indexImg" src="/images/add.svg" alt="add form">
+        <a  id="newForm">
+          <img route="/registerform" id="indexImg" src="/images/add.svg" alt="add form">
         </a>
       </div>
 
       <!-- Forms -->
       <div class="indexForms">
         <ul>
-          <li><a href="/views/formdisplay.html">Form1</a></li>
-          <li><a href="#">Form2</a></li>
-          <li><a href="#">Form3</a></li>
-          <li><a href="#">Form4</a></li>
-          <li><a href="#">Form5</a></li>
-          <li><a href="#">Form6</a></li>
+          <li><a route="/formdisplay">Form1</a></li>
         </ul>
       </div>
       
     </div><!--End wrapper div-->
   </div><!--End view div-->
 </body>
-
-</html>

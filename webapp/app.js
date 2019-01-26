@@ -9,18 +9,35 @@ var logger = function(req,res,next){
     console.log("Request was made");
     next();
 };
-//app.set('view engine','ejs');
-//app.set('views',path.join(__dirname,'views'));
+
 app.use(logger);
-
-//Set static path
-//app.use(express.static('views'));
 app.use(express.static('public'));
-//app.use('/images',express.static('public'));
-//app.use('/javascript',express.static('public'));
-
-
 app.get('/',function(req,res){
+
+    //res.sendFile(path.join(__dirname,'/views/app.html'));
+    res.sendFile(path.join(__dirname,'/public/views/app.html'));
+});
+app.get('/statistics',function(req,res){
+
+    //res.sendFile(path.join(__dirname,'/views/app.html'));
+    res.sendFile(path.join(__dirname,'/public/views/app.html'));
+});
+app.get('/landing',function(req,res){
+
+    //res.sendFile(path.join(__dirname,'/views/app.html'));
+    res.sendFile(path.join(__dirname,'/public/views/app.html'));
+});
+app.get('/registerform',function(req,res){
+
+    //res.sendFile(path.join(__dirname,'/views/app.html'));
+    res.sendFile(path.join(__dirname,'/public/views/app.html'));
+});
+app.get('/formdisplay',function(req,res){
+
+    //res.sendFile(path.join(__dirname,'/views/app.html'));
+    res.sendFile(path.join(__dirname,'/public/views/app.html'));
+});
+app.get('/login',function(req,res){
 
     //res.sendFile(path.join(__dirname,'/views/app.html'));
     res.sendFile(path.join(__dirname,'/public/views/app.html'));
