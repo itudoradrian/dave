@@ -45,3 +45,7 @@
 .button{
     margin: 20px 0 10px 30%;
 }
+button[route]{
+    
+    width: 41%;
+}

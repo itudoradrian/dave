@@ -33,47 +33,8 @@ async function init() {
     await fetchHTMLPage('login');
     await fetchHTMLPage('registerform');
     await fetchHTMLPage('statistics');
-
-    /*introRoutes = new Router([{
-        
-        path: '/login',
-        name: 'login'
-    },{
-        
-        path: '/landing',
-        name: 'landing'
-    }],window.location.pathname)*/
-    
-
-    routes = new Router([{
-        path: '/',
-        name: 'index'
-    }, {
-
-        path: '/formdisplay',
-        name: 'formdisplay'
-    }, {
-
-        path: '/registerform',
-        name: 'registerform'
-
-    }, {
-
-        path: '/statistics',
-        name: 'statistics'
-    },{
-        
-        path: '/login',
-        name: 'login'
-    },{
-        
-        path: '/landing',
-        name: 'landing'
-    }
-    ], window.location.pathname);
-
+    await setAuth();
     var links = Array.from(document.querySelectorAll('[route]'));
-
     function navigate(event) {
         event.preventDefault();
         var route = event.target.attributes[0].value;
@@ -90,5 +51,81 @@ async function init() {
         routes.navigation(window.location.pathname);
     });
     
+    const session = localStorage.getItem('logged');
+    if(!session)
+    {
+        localStorage.setItem('logged',false);
+        routes.setView('/landing');
+    }
+
+    if(session === 'false')
+    {
+        routes.changeRoute('/landing');
+    }
+    else
+    {
+        routes.setView(window.location.pathname);
+    }
+   
 }
+var routes = new Router([{
+    path: '/',
+    name: 'index'
+}, {
+
+    path: '/formdisplay',
+    name: 'formdisplay'
+}, {
+
+    path: '/registerform',
+    name: 'registerform'
+
+}, {
+
+    path: '/statistics',
+    name: 'statistics'
+},{
+    
+    path: '/login',
+    name: 'login'
+},{
+    
+    path: '/landing',
+    name: 'landing'
+}
+], window.location.pathname);
 init();
+/*
+async function start()
+{
+    await fetchHTMLPage('landing');
+    await fetchHTMLPage('login');
+    loginRoutes = new Router([{
+        
+        path: '/login',
+        name: 'login'
+    },{
+        
+        path: '/landing',
+        name: 'landing'
+    }],window.location.pathname);
+
+    const session = localStorage.getItem('logged');
+    if(!session)
+    {
+        localStorage.setItem('logged',false);
+        loginRoutes.setView('/login');
+    }
+
+    if(session === 'false')
+    {
+        //console.log('nothing');
+        loginRoutes.setView('/landing');
+    }
+    else
+    {
+        init();
+    }
+    
+}
+start();*/

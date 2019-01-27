@@ -9,22 +9,20 @@
 
 				<!-- The login form -->
 				<div class="login">
-					<form>
+					<form id="loginForm" >
 						<div class="form-group">
 							<label><b>Email</b></label>
-							<input type="text" required>
+							<input name="email" type="text" required>
 						</div>
 						<div class="form-group">
 							<label><b>Password</b></label>
-							<input type="password" required>
-						</div>
-						<div class="form-group">
-							<label>Remember me</label>
-							<input type="checkbox" checked="checked" name="remember">
+							<input name="password" type="password" required>
 						</div>
 						<input class="button" type="submit" value="Login">
+						<button route="/landing" class="button">Register</button>
 					</form>
 				</div>
+				<div id="errorLogin"></div>
 			</div>
 		</div>
 	</div><!--end view-->

@@ -2,7 +2,6 @@ class Router {
     constructor(routesList, path) {
         this.routes = routesList;
         this.currentPath = path;
-        this.setView(path);
     }
     setView(path) {
         //console.log(path.slice(0));
