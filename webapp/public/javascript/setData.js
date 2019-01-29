@@ -72,23 +72,25 @@ function setTableView(name) {
 
         tableBody += '</tbody>'
         table += tableBody;
-        document.getElementById('displayTable').insertAdjacentHTML('afterbegin',table);
+        document.getElementById('displayTable').insertAdjacentHTML('afterbegin', table);
         routes.changeRoute('/formdisplay');
     }
     else {
         console.log('Sorry no data');
     }
 }
+
 function setFormViews() {
     const liElements = document.querySelectorAll('#formList li a');
     console.log(liElements);
     liElements.forEach(el => {
 
-        el.addEventListener('click', e => {
+        el.addEventListener('click', async e => {
 
             if (e.target.nodeName == 'A') {
 
                 setTableView(el['name']);
+
             }
         });
     });

@@ -37,9 +37,18 @@ function setRegister(registerForm) {
         });
 
         await auth.createUserWithEmailAndPassword(formValues.email, formValues.password)
-            .then(rasp => {
+            .then( async rasp => {
 
                 console.log(rasp.user);
+                await db.collection('users').doc(`${rasp.user.uid}`).set({
+                    
+                    rsaKey: 'gilberto',
+                }).then(function(e) {
+                    console.log('Doc registered');
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                });
                 localStorage.setItem('logged', 'true');
                 routes.changeRoute('/');
 
