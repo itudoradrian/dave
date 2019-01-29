@@ -25,6 +25,17 @@ async function fetchHTMLPage(resourceName) {
         document.body.insertAdjacentElement('beforebegin', view);
     })
 }
+function navigate(event) {
+    event.preventDefault();
+    var route = event.target.attributes[0].value;
+    routes.changeRoute(route);
+    if(document.getElementById('formdisplayView').getAttribute('class') == 'passive')
+    {
+        document.getElementById('displayTable').innerHTML = '';
+        
+    }
+
+}
 async function init() {
 
     await fetchHTMLPage('index');
@@ -34,13 +45,8 @@ async function init() {
     await fetchHTMLPage('registerform');
     await fetchHTMLPage('statistics');
     await setAuth();
+    
     var links = Array.from(document.querySelectorAll('[route]'));
-    function navigate(event) {
-        event.preventDefault();
-        var route = event.target.attributes[0].value;
-        routes.changeRoute(route);
-
-    }
     links.forEach(function (lk) {
         lk.addEventListener('click', navigate);
     });
@@ -66,66 +72,14 @@ async function init() {
     {
         routes.setView(window.location.pathname);
     }
+
+    const regForm = document.getElementById('formRegister');
+    regForm.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+        //console.log(regForm['numeForm'].value);
+    });
    
 }
-var routes = new Router([{
-    path: '/',
-    name: 'index'
-}, {
 
-    path: '/formdisplay',
-    name: 'formdisplay'
-}, {
-
-    path: '/registerform',
-    name: 'registerform'
-
-}, {
-
-    path: '/statistics',
-    name: 'statistics'
-},{
-    
-    path: '/login',
-    name: 'login'
-},{
-    
-    path: '/landing',
-    name: 'landing'
-}
-], window.location.pathname);
 init();
-/*
-async function start()
-{
-    await fetchHTMLPage('landing');
-    await fetchHTMLPage('login');
-    loginRoutes = new Router([{
-        
-        path: '/login',
-        name: 'login'
-    },{
-        
-        path: '/landing',
-        name: 'landing'
-    }],window.location.pathname);
-
-    const session = localStorage.getItem('logged');
-    if(!session)
-    {
-        localStorage.setItem('logged',false);
-        loginRoutes.setView('/login');
-    }
-
-    if(session === 'false')
-    {
-        //console.log('nothing');
-        loginRoutes.setView('/landing');
-    }
-    else
-    {
-        init();
-    }
-    
-}
-start();*/
