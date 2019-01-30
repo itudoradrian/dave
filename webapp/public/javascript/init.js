@@ -72,14 +72,25 @@ async function init() {
     {
         routes.setView(window.location.pathname);
     }
-
     const regForm = document.getElementById('formRegister');
-    regForm.addEventListener('submit', (e) => {
+    regForm.addEventListener('submit',async (e) => {
 
         e.preventDefault();
-        //console.log(regForm['numeForm'].value);
+        //console.log();
+        await db.collection('users').doc(`${user.uid}`).collection('registerForm').add({
+
+            name:regForm['numeForm'].value
+            
+        }).then(function() {
+            formNames.push(regForm['numeForm'].value);
+            regForm.reset();
+            setForms();
+            console.log('Doc registered');
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
     });
-   
 }
 
 init();

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <form id="formForBills">
+        <label>Bill Name</label>
+        <input name="billName" type="text">
+        <label>Bill Price</label>
+        <input name="billPrice" type="text">
+        <label>Bill Type</label>
+        <input name="billType" type="text">
+        <input type="submit">
+    </form>
+    <div id="serverResponse">
+
+    </div>
+    <script>
+        const publicKey = 'something';
+        const aesKey = 'aesKey';
+        let formForBills = document.getElementById('formForBills')
+        formForBills.addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+            const formValues = {}
+            const elemArray = Array.from(formForBills.elements);
+            elemArray.filter(el => el.type == 'text').map(elem => {
+
+                formValues[elem.name] = elem.value;
+            });
+            formForBills.reset();
+            let plainJSON = JSON.stringify(formValues);
+            //encript plainJSON with aes key
+            //encrypt aesKey with rsa public key
+            let dto = { name: 'formForBills', aes: aesKey, data: plainJSON };
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', function (event) {
+                document.getElementById('serverResponse').innerHTML = this.responseText
+            });
+
+            // Define what happens in case of error
+            xhr.addEventListener('error', function (event) {
+                document.getElementById('serverResponse').innerHTML = 'Error at send';
+            });
+            xhr.open("POST", '/dataTransfer', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(dto));
+
+
+        });
+
+    </script>
+</body>
+
+</html>

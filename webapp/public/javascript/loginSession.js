@@ -86,7 +86,7 @@ function setUserData(userData) {
     user = userData;
 }
 async function getFormData() {
-    await db.collection(`users/${user.uid}/registerFormed`).get().then(snap => {
+    await db.collection(`users/${user.uid}/registerForm`).get().then(snap => {
 
         formNames = snap.docs.map(doc => {
 
