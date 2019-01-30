@@ -9,43 +9,122 @@ function setForms() {
     ulElem.insertAdjacentHTML('afterbegin', liList);
 
 }
-function decryptJSON(enJSON) {
+function convertStringToArrayBufferView(str) {
+    var bytes = new Uint8Array(new ArrayBuffer(str.length));
+    for (var iii = 0; iii < str.length; iii++) {
+        bytes[iii] = str.charCodeAt(iii);
+    }
 
-
-    let jsonData = [{
-        'username': 'leo',
-        'email': 'lebranco@srl.co',
-        'telefon': '0342131231',
-    },
-    {
-        'username': 'leo',
-        'email': 'lebranco@srl.co',
-        'telefon': '0342131231',
-    },
-    {
-        'username': 'leo',
-        'email': 'lebranco@srl.co',
-        'telefon': '0342131231',
-    }];
-    return jsonData;
+    return bytes;
 }
-function setTableView(name) {
+function convertArrayBufferViewtoString(buffer) {
+    var str = "";
+    for (var iii = 0; iii < buffer.byteLength; iii++) {
+        str += String.fromCharCode(buffer[iii]);
+    }
 
+    return str;
+}
+async function setTableView(name) {
 
-    let enJSON = formsData.filter(form => {
+    currentFormView = name;
+    let decryptData = await formsData.filter(form => {
 
         if (form['name'] == name) {
             return true;
         }
         return false;
-    }).map(entry => {
+    }).map(async entry => {
 
-        return entry.enJSON;
+        let privateKey = null;
+        await db.collection('users').doc(user.uid).get().then(doc => {
+
+            privateKey = JSON.parse(doc.data().privateKey);
+
+        });
+        let enAESKey = convertStringToArrayBufferView(entry.aes);
+        let enDataJSON = convertStringToArrayBufferView(entry.data[0]);
+        let privateCryptoKey = null;
+        //Import private key
+        await window.crypto.subtle.importKey(
+            "jwk",
+            privateKey,
+            {
+                name: "RSA-OAEP",
+                modulusLength: 2048,
+                publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+                hash: { name: "SHA-256" }
+            },
+            true,
+            ["decrypt"]
+        )
+            .then(function (private) {
+                privateCryptoKey = private;
+                console.log('RSA IMPORT SUCCES');
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+        let aesKey = null;
+        await window.crypto.subtle.decrypt(
+            {
+                name: "RSA-OAEP",
+                iv: new Uint8Array([0x01, 0x00, 0x01])
+            },
+            privateCryptoKey,
+            enAESKey).then(function (result) {
+                decrypted_data = new Uint8Array(result);
+                aesKey = JSON.parse(convertArrayBufferViewtoString(decrypted_data));
+                console.log("AES KEY DECRYPTED");
+            },
+                function (e) {
+                    console.log(e.message);
+                }
+            );
+        let aesCriptoKey = null;
+        await window.crypto.subtle.importKey(
+            "jwk", 
+            aesKey,
+            {   
+                name: "AES-CTR",
+            },
+            true, 
+            ["encrypt", "decrypt"] 
+        )
+            .then(function (key) {
+                //returns the symmetric key
+                aesCriptoKey = key;
+                console.log("IMPORTED AES KEY");
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+        let deJSONdata = null;
+        await window.crypto.subtle.decrypt(
+            {
+                name: "AES-CTR",
+                counter: new Uint8Array(16),
+                length: 128, 
+            },
+            aesCriptoKey, 
+            enDataJSON 
+        )
+            .then(function (decrypted) {
+
+                deJSONdata = JSON.parse(convertArrayBufferViewtoString(new Uint8Array(decrypted)));
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+        return deJSONdata;
     });
+    let enJSON = null;
+    await Promise.all(decryptData).then((completed) => enJSON = completed);
+    console.log(enJSON);
 
     if (enJSON.length) {
 
-        jsonData = decryptJSON(enJSON);
+        jsonData = enJSON;
         const keys = Object.keys(jsonData[0]);
         //console.log(keys);
         let table = '<table>'
@@ -184,7 +263,7 @@ function generateCode(userId, rsaKey, aes, formName) {
                         console.log(err);
                     });
                     console.log(cryptedAES);
-            let dto = {uid:'${userId}', name: '${formName}', aes: cryptedAES, data: enJSON };
+            let dto = {uid:'${userId}', name: '${formName}', aes: cryptedAES, data: [enJSON] };
             const xhr = new XMLHttpRequest();
             xhr.addEventListener('load', function (event) {
                 document.getElementById('serverResponse').innerHTML = this.responseText
@@ -206,10 +285,10 @@ function setFormViews() {
     //console.log(liElements);
     liElements.forEach(el => {
 
-        el.addEventListener('click', async e => {
+        el.addEventListener('click', e => {
 
             if (e.target.nodeName == 'A') {
-
+                
                 setTableView(el['name']);
 
             }

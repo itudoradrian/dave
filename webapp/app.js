@@ -58,17 +58,13 @@ app.get('/login', function (req, res) {
 app.post('/dataTransfer',async function (req, res) {
 
     let formData = req.body;
-    let targetForm = null;
-    await db.collection("users").doc(formData.uid).collection('formData').get().then((querySnapshot) => {
-        
-        if(querySnapshot.forEach( doc => {
-            console.log(doc.data());
-        }));
-        else{
-            console.log('There is no data');
-        }
+    await db.collection("users").doc(formData.uid).collection('formData').add(formData).then(rasp => {
+        console.log('added');
+    }).catch(err => {
+        console.log('eroare');
     });
-    res.send("Result okay");
+    
+    res.send("Data successful added");
 
 });
 app.listen(3000, function () {

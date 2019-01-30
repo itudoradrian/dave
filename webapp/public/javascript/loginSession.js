@@ -1,4 +1,3 @@
-
 function setLogin(loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -37,7 +36,7 @@ function setRegister(registerForm) {
         });
 
         await auth.createUserWithEmailAndPassword(formValues.email, formValues.password)
-            .then( async rasp => {
+            .then(async rasp => {
 
                 let private_key_object = null;
                 let public_key_object = null;
@@ -61,40 +60,40 @@ function setRegister(registerForm) {
                 let exported_public_key = null;
 
                 await window.crypto.subtle.exportKey(
-                    "jwk", 
+                    "jwk",
                     private_key_object
                 )
-                .then(function(private){
-                    
-                    console.log(JSON.stringify(private));
-                    exported_private_key = JSON.stringify(private)
-                })
-                .catch(function(err){
-                    console.log(err);
-                });
+                    .then(function (private) {
+
+                        console.log(JSON.stringify(private));
+                        exported_private_key = JSON.stringify(private)
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
 
                 await window.crypto.subtle.exportKey(
-                    "jwk", 
-                    public_key_object 
+                    "jwk",
+                    public_key_object
                 )
-                .then(function(public){
-                    
-                    console.log(JSON.stringify(public));
-                    exported_public_key = JSON.stringify(public)
-                })
-                .catch(function(err){
-                    console.log(err);
-                });
+                    .then(function (public) {
+
+                        console.log(JSON.stringify(public));
+                        exported_public_key = JSON.stringify(public)
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
 
                 await db.collection('users').doc(`${rasp.user.uid}`).set({
                     publicKey: exported_public_key,
                     privateKey: exported_private_key,
-                }).then(function(e) {
+                }).then(function (e) {
                     console.log('User configured');
                 })
-                .catch(function(error) {
-                    console.log("Error writing document: ", error);
-                });
+                    .catch(function (error) {
+                        console.log("Error writing document: ", error);
+                    });
                 localStorage.setItem('logged', 'true');
                 routes.changeRoute('/');
 
@@ -128,30 +127,6 @@ function setLogout(logoutButtons) {
         });
     });
 }
-function setUserData(userData) {
-    user = userData;
-}
-async function getFormData() {
-    await db.collection(`users/${user.uid}/registerForm`).get().then(snap => {
-
-        formNames = snap.docs.map(doc => {
-
-            return doc.data().name;
-        });
-    });
-
-}
-async function getViews() {
-    db.collection(`users/${user.uid}/formData`).get().then(snp => {
-
-
-        formNames = snp.docs.map(doc => {
-
-            console.log(doc.data());
-            formsData.push({'name':doc.data().nume,'enJSON':doc.data().enJSON,'aesKey':doc.data().aesKey})
-        });
-    });
-}
 function setAuth() {
 
     const loginForm = document.getElementById('loginForm');
@@ -162,9 +137,23 @@ function setAuth() {
     setLogout(logoutButtons);
     auth.onAuthStateChanged(async userData => {
         if (userData) {
-            setUserData(userData);
-            await getFormData();
-            await getViews();
+            user = userData;
+            await db.collection(`users/${user.uid}/registerForm`).get().then(snap => {
+
+                formNames = snap.docs.map(doc => {
+
+                    return doc.data().name;
+                });
+            });
+            await db.collection('users').doc(user.uid).collection('formData').get().then(snp => {
+
+                snp.docs.forEach(doc => {
+                    formsData.push({ 'name': doc.data().name, 'data': doc.data().data, 'aes': doc.data().aes, 'uid': doc.data().uid });
+                });
+
+            });
+
+            console.log(formsData);
             setForms();
             setFormViews();
         }
@@ -228,9 +217,8 @@ function setAuth() {
                 console.error("Error writing document: ", error);
             });
 
-        let generatedCode = generateCode(user.uid,rsaPublicKey, dtoAes, nameOfForm);
-        document.getElementById('displayCode').insertAdjacentHTML('beforebegin',generatedCode);
+        let generatedCode = generateCode(user.uid, rsaPublicKey, dtoAes, nameOfForm);
+        document.getElementById('displayCode').insertAdjacentHTML('beforebegin', generatedCode);
 
     });
 }
-

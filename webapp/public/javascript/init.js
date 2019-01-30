@@ -24,13 +24,14 @@ async function fetchHTMLPage(resourceName) {
         view.setAttribute('id', `${resourceName}View`);
         view.addEventListener('viewChange', () => {
 
-            console.log('View Changed');
+            
             if (routes.currentPath != '/registerform') {
                 document.getElementById('displayCode').innerHTML = '';
             }
             if (routes.currentPath != '/formdisplay') {
                 document.getElementById('displayTable').innerHTML = '';
             }
+            
         });
         document.body.insertAdjacentElement('beforebegin', view);
     })
@@ -74,7 +75,7 @@ async function init() {
     else {
         routes.setView(window.location.pathname);
     }
-    
+
 }
 
 init();

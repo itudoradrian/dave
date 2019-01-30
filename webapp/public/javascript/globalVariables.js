@@ -14,12 +14,12 @@ const routes = new Router([{
 
     path: '/statistics',
     name: 'statistics'
-},{
-    
+}, {
+
     path: '/login',
     name: 'login'
-},{
-    
+}, {
+
     path: '/landing',
     name: 'landing'
 }
@@ -28,3 +28,4 @@ var viewChange = new Event('viewChange');
 var user;
 var formNames;
 var formsData = [];
+

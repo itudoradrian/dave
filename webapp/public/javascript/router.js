@@ -8,6 +8,7 @@ class Router {
         const result = this.routes.filter(route => path == route.path);
         let viewId = document.getElementById(`${result[0].name}View`);
         viewId.removeAttribute('class');
+        viewId.dispatchEvent(viewChange);
     }
     changeRoute(route) {
         var routeInfo = this.routes.filter(function (r) {
@@ -38,7 +39,7 @@ class Router {
         const result = this.routes.filter(route => this.currentPath == route.path);
         let viewId = document.getElementById(`${result[0].name}View`);
         viewId.setAttribute('class', 'passive');
-
+        
 
         var routeInfo = this.routes.filter(function (r) {
             return r.path === route;
@@ -47,5 +48,6 @@ class Router {
         viewId2.removeAttribute('class');
         this.currentPath = routeInfo.path;
         window.history.replaceState({}, '', routeInfo.path);
+        viewId.dispatchEvent(viewChange);
     }
 }
