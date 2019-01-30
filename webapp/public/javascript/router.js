@@ -30,6 +30,7 @@ class Router {
             viewId.removeAttribute('class');
             this.currentPath = routeInfo.path;
             window.history.pushState({}, '', routeInfo.path);
+            viewId.dispatchEvent(viewChange);
         }
 
     }

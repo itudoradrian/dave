@@ -24,6 +24,7 @@ const routes = new Router([{
     name: 'landing'
 }
 ], window.location.pathname);
+var viewChange = new Event('viewChange');
 var user;
 var formNames;
 var formsData = [];

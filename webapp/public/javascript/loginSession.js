@@ -39,15 +39,61 @@ function setRegister(registerForm) {
         await auth.createUserWithEmailAndPassword(formValues.email, formValues.password)
             .then( async rasp => {
 
-                console.log(rasp.user);
-                await db.collection('users').doc(`${rasp.user.uid}`).set({
+                let private_key_object = null;
+                let public_key_object = null;
+
+                //Generate keys
+                await crypto.subtle.generateKey({
+                    name: "RSA-OAEP",
+                    modulusLength: 2048,
+                    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+                    hash: { name: "SHA-256" }
+                }, true, ["encrypt", "decrypt"]).then(function (key) {
+                    private_key_object = key.privateKey;
+                    public_key_object = key.publicKey;
+                }).catch(function (e) {
+                    console.log(e.message);
+                });
+                console.log(private_key_object);
+                console.log(public_key_object);
+                //Export keys
+                let exported_private_key = null;
+                let exported_public_key = null;
+
+                await window.crypto.subtle.exportKey(
+                    "jwk", 
+                    private_key_object
+                )
+                .then(function(private){
                     
-                    rsaKey: 'gilberto',
+                    console.log(JSON.stringify(private));
+                    exported_private_key = JSON.stringify(private)
+                })
+                .catch(function(err){
+                    console.log(err);
+                });
+
+                await window.crypto.subtle.exportKey(
+                    "jwk", 
+                    public_key_object 
+                )
+                .then(function(public){
+                    
+                    console.log(JSON.stringify(public));
+                    exported_public_key = JSON.stringify(public)
+                })
+                .catch(function(err){
+                    console.log(err);
+                });
+
+                await db.collection('users').doc(`${rasp.user.uid}`).set({
+                    publicKey: exported_public_key,
+                    privateKey: exported_private_key,
                 }).then(function(e) {
-                    console.log('Doc registered');
+                    console.log('User configured');
                 })
                 .catch(function(error) {
-                    console.error("Error writing document: ", error);
+                    console.log("Error writing document: ", error);
                 });
                 localStorage.setItem('logged', 'true');
                 routes.changeRoute('/');
@@ -125,6 +171,66 @@ function setAuth() {
         else {
             console.log('USER OUT');
         }
+    });
+    const regForm = document.getElementById('formRegister');
+    regForm.addEventListener('submit', async (e) => {
+
+        e.preventDefault();
+        let aesKey = null;
+        let dtoAes = null;
+        let rsaPublicKey = null;
+        let nameOfForm = regForm['numeForm'].value;
+        await window.crypto.subtle.generateKey(
+            {
+                name: "AES-CTR",
+                length: 256,
+            },
+            true,
+            ["encrypt", "decrypt"]
+        )
+            .then(function (key) {
+                //returns a key object
+                aesKey = key;
+
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+
+        await window.crypto.subtle.exportKey(
+            "jwk", //can be "jwk" or "raw"
+            aesKey //extractable must be true
+        )
+            .then(function (keydata) {
+                //returns the exported key data
+                console.log(keydata);
+                dtoAes = JSON.stringify(keydata);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+
+        await db.collection('users').doc(`${user.uid}`).get().then(doc => {
+
+            rsaPublicKey = doc.data().publicKey;
+        });
+        await db.collection('users').doc(`${user.uid}`).collection('registerForm').add({
+
+            name: nameOfForm,
+
+        }).then(function () {
+            formNames.push(nameOfForm);
+            regForm.reset();
+            setForms();
+            console.log('Doc registered');
+        })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+            });
+
+        let generatedCode = generateCode(user.uid,rsaPublicKey, dtoAes, nameOfForm);
+        document.getElementById('displayCode').insertAdjacentHTML('beforebegin',generatedCode);
+
     });
 }
 

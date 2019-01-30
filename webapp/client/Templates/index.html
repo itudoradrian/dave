@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form id="formForBills">
+    <form id="test4">
         <label>Bill Name</label>
         <input name="billName" type="text">
         <label>Bill Price</label>
@@ -22,38 +22,7 @@
 
     </div>
     <script>
-        const publicKey = 'something';
-        const aesKey = 'aesKey';
-        let formForBills = document.getElementById('formForBills')
-        formForBills.addEventListener('submit', async (e) => {
-
-            e.preventDefault();
-            const formValues = {}
-            const elemArray = Array.from(formForBills.elements);
-            elemArray.filter(el => el.type == 'text').map(elem => {
-
-                formValues[elem.name] = elem.value;
-            });
-            formForBills.reset();
-            let plainJSON = JSON.stringify(formValues);
-            //encript plainJSON with aes key
-            //encrypt aesKey with rsa public key
-            let dto = { name: 'formForBills', aes: aesKey, data: plainJSON };
-            const xhr = new XMLHttpRequest();
-            xhr.addEventListener('load', function (event) {
-                document.getElementById('serverResponse').innerHTML = this.responseText
-            });
-
-            // Define what happens in case of error
-            xhr.addEventListener('error', function (event) {
-                document.getElementById('serverResponse').innerHTML = 'Error at send';
-            });
-            xhr.open("POST", '/dataTransfer', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(JSON.stringify(dto));
-
-
-        });
+       function convertStringToArrayBufferView(str) { var bytes = new Uint8Array(new ArrayBuffer(str.length)); for (var iii = 0; iii < str.length; iii++) { bytes[iii] = str.charCodeAt(iii); } return bytes; } function convertArrayBufferViewtoString(buffer) { var str = ""; for (var iii = 0; iii < buffer.byteLength; iii++) { str += String.fromCharCode(buffer[iii]); } return str; } async function encryptData(){ const publicKey = {"alg":"RSA-OAEP-256","e":"AQAB","ext":true,"key_ops":["encrypt"],"kty":"RSA","n":"0K5puK1tGU_g5PGsFayrOHv4QloUy1acymXF1FL5GnwFWmaWqvTFLzcrroelHCK7X-w88w0KVMwxpv10mZUAIrxdEXSffn3VWLpGRtmtaWEbmJJfKSo7UNvaN5iWa8vVzRnoHT36OqANz05NrDz7O-Cc40I7TEfWJ7iuUwfTX5mCe_VKHFzE-n7E1vdSwmv69R-9qU8lw00ZJ8rKjKoV9LJ_K9Nz2j6Bhq7ugkA72hetaI6nCR6kdKsyVCbnJmQ3RHrZZwYPk8Q_Tn_r8S2b-R-EoJelnmk-iNS5BJ_xvXIFpYxmwmv9yDFeE3C9-IBgdxS1IbrmbQu1d66Q9XJPCQ"}; const aesKey = {"alg":"A256CTR","ext":true,"k":"yFXPHP3hXwRzpAGwP8I0iJugxer_YG3l1uiq-N1g4KA","key_ops":["encrypt","decrypt"],"kty":"oct"}; let test4 = document.getElementById('test4'); test4.addEventListener('submit', async (e) => { e.preventDefault(); const formValues = {}; const elemArray = Array.from(test4.elements); elemArray.filter(el => el.type == 'text').map(elem => { formValues[elem.name] = elem.value; }); test4.reset(); let plainJSON = JSON.stringify(formValues); let cryptoKeyAES = null; let cryptoKeyRSA = null; let enJSON = null; await window.crypto.subtle.importKey( "jwk", aesKey, { name: "AES-CTR", }, true, ["encrypt", "decrypt"] ) .then(function (key) { cryptoKeyAES = key; console.log('AES IMPORT SUCCES'); }) .catch(function (err) { console.log(err); }); let JSONtoCrypt = convertStringToArrayBufferView(plainJSON); await window.crypto.subtle.encrypt( { name: "AES-CTR", counter: new Uint8Array(16), length: 128, }, cryptoKeyAES, JSONtoCrypt ) .then(function (encrypted) { enJSON = convertArrayBufferViewtoString(new Uint8Array(encrypted)); console.log('AES ENCRYPT SUCCES'); }) .catch(function (err) { console.log(err); }); let aesToCrypt = convertStringToArrayBufferView(JSON.stringify(aesKey)); console.log(aesToCrypt); console.log(aesKey); console.log(JSON.stringify(aesKey)); let cryptedAES = null; await window.crypto.subtle.importKey( "jwk", publicKey, { name: "RSA-OAEP", hash: { name: "SHA-256" }, }, true, ["encrypt"] ) .then(function (publicKey) { cryptoKeyRSA = publicKey; console.log('RSA IMPORT SUCCES'); }) .catch(function (err) { console.log(err); }); await window.crypto.subtle.encrypt( { name: "RSA-OAEP", }, cryptoKeyRSA, aesToCrypt ) .then(function (encrypted) { cryptedAES = convertArrayBufferViewtoString(new Uint8Array(encrypted)); console.log('RSA ENCRYPT SUCCES'); }) .catch(function (err) { console.log(err); }); console.log(cryptedAES); let dto = {uid:'5DgIiua7N3eedhgBmKLUz2354gE2', name: 'test4', aes: cryptedAES, data: enJSON }; const xhr = new XMLHttpRequest(); xhr.addEventListener('load', function (event) { document.getElementById('serverResponse').innerHTML = this.responseText }); xhr.addEventListener('error', function (event) { document.getElementById('serverResponse').innerHTML = 'Error at send'; }); xhr.open("POST", '/dataTransfer', true); xhr.setRequestHeader('Content-Type', 'application/json'); xhr.send(JSON.stringify(dto)); }); } encryptData();
 
     </script>
 </body>
