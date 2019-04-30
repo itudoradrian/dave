@@ -152,8 +152,6 @@ function setAuth() {
                 });
 
             });
-
-            console.log(formsData);
             setForms();
             setFormViews();
         }

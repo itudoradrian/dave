@@ -35,7 +35,9 @@
         const db = firebase.firestore();
 
         //update firestore settings
-        db.settings({timestampsInSnapshots : true});
+        db.settings({
+            timestampsInSnapshots: true
+        });
     </script>
     <script src="/javascript/router.js"></script>
     <script src="/javascript/globalVariables.js"></script>

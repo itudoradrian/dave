@@ -9,6 +9,7 @@ function setForms() {
     ulElem.insertAdjacentHTML('afterbegin', liList);
 
 }
+
 function convertStringToArrayBufferView(str) {
     var bytes = new Uint8Array(new ArrayBuffer(str.length));
     for (var iii = 0; iii < str.length; iii++) {
@@ -17,6 +18,7 @@ function convertStringToArrayBufferView(str) {
 
     return bytes;
 }
+
 function convertArrayBufferViewtoString(buffer) {
     var str = "";
     for (var iii = 0; iii < buffer.byteLength; iii++) {
@@ -47,17 +49,18 @@ async function setTableView(name) {
         let privateCryptoKey = null;
         //Import private key
         await window.crypto.subtle.importKey(
-            "jwk",
-            privateKey,
-            {
-                name: "RSA-OAEP",
-                modulusLength: 2048,
-                publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-                hash: { name: "SHA-256" }
-            },
-            true,
-            ["decrypt"]
-        )
+                "jwk",
+                privateKey, {
+                    name: "RSA-OAEP",
+                    modulusLength: 2048,
+                    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+                    hash: {
+                        name: "SHA-256"
+                    }
+                },
+                true,
+                ["decrypt"]
+            )
             .then(function (private) {
                 privateCryptoKey = private;
                 console.log('RSA IMPORT SUCCES');
@@ -66,8 +69,7 @@ async function setTableView(name) {
                 console.log(err);
             });
         let aesKey = null;
-        await window.crypto.subtle.decrypt(
-            {
+        await window.crypto.subtle.decrypt({
                 name: "RSA-OAEP",
                 iv: new Uint8Array([0x01, 0x00, 0x01])
             },
@@ -77,20 +79,19 @@ async function setTableView(name) {
                 aesKey = JSON.parse(convertArrayBufferViewtoString(decrypted_data));
                 console.log("AES KEY DECRYPTED");
             },
-                function (e) {
-                    console.log(e.message);
-                }
-            );
+            function (e) {
+                console.log(e.message);
+            }
+        );
         let aesCriptoKey = null;
         await window.crypto.subtle.importKey(
-            "jwk", 
-            aesKey,
-            {   
-                name: "AES-CTR",
-            },
-            true, 
-            ["encrypt", "decrypt"] 
-        )
+                "jwk",
+                aesKey, {
+                    name: "AES-CTR",
+                },
+                true,
+                ["encrypt", "decrypt"]
+            )
             .then(function (key) {
                 //returns the symmetric key
                 aesCriptoKey = key;
@@ -100,15 +101,14 @@ async function setTableView(name) {
                 console.error(err);
             });
         let deJSONdata = null;
-        await window.crypto.subtle.decrypt(
-            {
-                name: "AES-CTR",
-                counter: new Uint8Array(16),
-                length: 128, 
-            },
-            aesCriptoKey, 
-            enDataJSON 
-        )
+        await window.crypto.subtle.decrypt({
+                    name: "AES-CTR",
+                    counter: new Uint8Array(16),
+                    length: 128,
+                },
+                aesCriptoKey,
+                enDataJSON
+            )
             .then(function (decrypted) {
 
                 deJSONdata = JSON.parse(convertArrayBufferViewtoString(new Uint8Array(decrypted)));
@@ -153,11 +153,11 @@ async function setTableView(name) {
         table += tableBody;
         document.getElementById('displayTable').insertAdjacentHTML('afterbegin', table);
         routes.changeRoute('/formdisplay');
-    }
-    else {
+    } else {
         console.log('Sorry no data');
     }
 }
+
 function generateCode(userId, rsaKey, aes, formName) {
     let codeTag = '<code>';
     codeTag += `
@@ -280,6 +280,7 @@ function generateCode(userId, rsaKey, aes, formName) {
     codeTag += '</code>';
     return codeTag;
 }
+
 function setFormViews() {
     const liElements = document.querySelectorAll('#formList li a');
     //console.log(liElements);
@@ -288,7 +289,7 @@ function setFormViews() {
         el.addEventListener('click', e => {
 
             if (e.target.nodeName == 'A') {
-                
+
                 setTableView(el['name']);
 
             }

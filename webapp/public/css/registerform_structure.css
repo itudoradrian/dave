@@ -1,72 +1,72 @@
+@media (min-width: 800px) {
 
 
- @media (min-width: 800px) {
-    
-    
-    
+
     img {
         display: block;
         max-width: 100%;
         margin: auto;
     }
-    
+
     .registerWrapper {
         display: grid;
         grid-gap: 20px;
     }
-    
 
-    /* Register form */
-     .register form {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        box-shadow: 0 0 20px 0 var(--level4);       
-        border: 0.1em solid var(--level2);
-    }
-    .fields{
-        margin: auto;
-        grid-row: 1/2;
-    }
-    
-    .button{
-        
-        grid-row: 2/3;
-    }
-    
-    
-
-}  
-
- @media (max-width: 500px) {
-    
-    img {
-        display: block;
-        max-width: 100%;
-        margin: auto;
-    }
-    
-    .registerWrapper {
-        display: grid;
-        grid-gap: 10px;
-    }
-    
 
     /* Register form */
     .register form {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr;
-        box-shadow: 0 0 20px 0 var(--level4);       
+        box-shadow: 0 0 20px 0 var(--level4);
         border: 0.1em solid var(--level2);
     }
-    .fields{
+
+    .fields {
         margin: auto;
         grid-row: 1/2;
     }
-    
-    .button{
-        
+
+    .button {
+
         grid-row: 2/3;
     }
- }
+
+
+
+}
+
+@media (max-width: 500px) {
+
+    img {
+        display: block;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .registerWrapper {
+        display: grid;
+        grid-gap: 10px;
+    }
+
+
+    /* Register form */
+    .register form {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        box-shadow: 0 0 20px 0 var(--level4);
+        border: 0.1em solid var(--level2);
+    }
+
+    .fields {
+        margin: auto;
+        grid-row: 1/2;
+    }
+
+    .button {
+
+        grid-row: 2/3;
+    }
+}

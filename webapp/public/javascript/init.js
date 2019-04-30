@@ -23,14 +23,14 @@ async function fetchHTMLPage(resourceName) {
         const view = fetchedHTMLPage.querySelector('#view');
         view.setAttribute('id', `${resourceName}View`);
         view.addEventListener('viewChange', () => {
-
-            
+            console.log("View change");
             if (routes.currentPath != '/registerform') {
                 document.getElementById('displayCode').innerHTML = '';
             }
             if (routes.currentPath != '/formdisplay') {
                 document.getElementById('displayTable').innerHTML = '';
             }
+            
             
         });
         document.body.insertAdjacentElement('beforebegin', view);
@@ -75,7 +75,9 @@ async function init() {
     else {
         routes.setView(window.location.pathname);
     }
-
+    window.addEventListener('viewChange', () => {
+        console.log('View change');
+    });
 }
 
 init();

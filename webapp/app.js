@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const modul = require('v8')
 const app = express();
 app.use(express.json());
 var logger = function (req, res, next) {
@@ -55,7 +56,7 @@ app.get('/login', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/views/app.html'));
 });
 
-app.post('/dataTransfer',async function (req, res) {
+app.post('/dataTransfer', async function (req, res) {
 
     let formData = req.body;
     await db.collection("users").doc(formData.uid).collection('formData').add(formData).then(rasp => {
@@ -63,7 +64,7 @@ app.post('/dataTransfer',async function (req, res) {
     }).catch(err => {
         console.log('eroare');
     });
-    
+
     res.send("Data successful added");
 
 });

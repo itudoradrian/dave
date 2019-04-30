@@ -23,8 +23,7 @@ class Router {
             window.history.pushState({}, '', 'error')
             this.currentPath = '/error';
 
-        }
-        else {
+        } else {
 
             //console.log(window.history);
             let viewId = document.getElementById(`${routeInfo.name}View`);
@@ -39,7 +38,7 @@ class Router {
         const result = this.routes.filter(route => this.currentPath == route.path);
         let viewId = document.getElementById(`${result[0].name}View`);
         viewId.setAttribute('class', 'passive');
-        
+
 
         var routeInfo = this.routes.filter(function (r) {
             return r.path === route;
